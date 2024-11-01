@@ -1,0 +1,74 @@
+\documentclass[
+    accentcolor=pink,
+    boxarc,
+    dark_mode,
+    logofile=enmpty
+]{rubos-tuda-template}
+
+\usepackage{rubos-common}
+
+\sheetnumber{12}
+\semester{SoSe 2023}
+\date{4. Juli 2023}
+\termStyle{left-right-manual}
+\termLeft{%
+    printSemester,%
+}
+\termRight{%
+    printDate,%
+}
+\graphicspath{{../pictures/}}
+
+\title[trans rights <3]{Treffpunkt Mathematik II für Informatik \\ Sitzung \getSheetnumber{}}
+
+\begin{document}
+    \maketitle{}
+
+    \begin{anmerkung}
+        \huge{\textcolor{pink}{Keine Garantien über Richtigkeit oder Vollständigkeit. \\ Dies ist ein freiwilliger Mitschrieb.}}
+    \end{anmerkung}
+
+    \subsection*{12.1: Trennung der Variablen}
+
+    \subsubsection*{i)}
+    \begin{anmerkungen}
+        Man versucht, das $y$ vom $t$ zu trennen.
+        \[y'(t)=f(t)g(y(t)) \Leftrightarrow\int_{y(t_0)=y_0}^{y}\frac{1}{g(\tilde{y})}d\tilde{y}=\int_{t_0}^{t}f(\tilde{t})d\tilde{t}\]
+        Die Integrationsgrenzen der Integrale sind der Anfungspunkt und die Variable auf der rechten Seite. Auf der linken Seite: modellierte Größe $y$ als obere Grenze und $y(t_0)$ als Untere.
+    \end{anmerkungen}
+    \begin{align*}
+        y'(t)        & =\alpha y(t)(1-\beta y(t))\leftrightarrow y' & =\alpha y(1-\beta y) \\
+        y(0)         & =y_0                                                                \\
+        \alpha,\beta & >0
+    \end{align*}
+    \[\overset{\text{T.d.V.}}{\leadsto}\frac{dy}{dt}=\alpha y(1-\beta y)"\Leftrightarrow"\int_{y_0}^{y}\frac{1}{\tilde{y}(1-\beta\tilde{y})}d\tilde{y}=\int_{t_0}^{t}\alpha d\tilde{t}\Leftrightarrow\left[\ln(\frac{\beta\tilde{y}}{1-\beta\tilde{y}})\right]^y_{y_0}=\alpha(t-t_0)\]
+    \[\Leftrightarrow\ln(\frac{\beta y}{1-\beta y})=\alpha(t-t_0)-\ln(\frac{\beta y_0}{1-\beta y_0})\mathrel{\widehat{=}}\alpha t+c\Leftrightarrow\frac{\beta y}{1-\beta y}=\underbrace{e^c}_Ce^{\alpha t}\]
+    \[\Leftrightarrow\beta y=C e^{\alpha t}(1-\beta y)\Leftrightarrow y(\beta+C\beta e^{\alpha t})=C e^{\alpha t}\Leftrightarrow y(t)=\frac{C e^{\alpha t}}{\beta+\beta C\beta e^{\alpha t}}\]
+
+    \subsubsection*{ii)}
+    \[y'\overset{(*)}{=}\frac{1}{y-1}\cdot x,\quad y(1/2)=1/2\qquad\overset{\text{sauber!}}{\underset{(*)}{\leadsto}}y'(x)=\frac{x}{y(x)-1}\]
+    \[\overset{\text{T.d.V.}}{\leadsto}\int_{1/2}^{y}\tilde{y}-1d\tilde{y}=\int_{1/2}^{x}\tilde{x}d\tilde{x}\Leftrightarrow\left[\frac{\tilde{y}^2}{2}-\tilde{y}\right]^y_{1/2}=\left[\frac{\tilde{x}^2}{2}\right]^x_{1/2}\Leftrightarrow\frac{y^2}{2}-y-\frac{1}{8}+\frac{1}{2}=\frac{x^2}{2}-\frac{1}{8}\]
+    \[\Leftrightarrow y^2\underbrace{-2}_py+\underbrace{1-x^2}_q\overset{!}{=}0\]
+    \[y_{1/2}(x)=y_{1/2}=1\pm\sqrt{x^2}=1\pm x\overset{\text{AW}}{\Rightarrow}y(x)=1-x\]
+
+    \subsection*{Aufgabe 12.2: Variation der Konstanten}
+    \begin{anmerkungen}
+        \[y'+g(y,x)=0\text{ homogen}\]
+        \[y'+g(y,x)=f(x)\text{ inhomogen}\]
+    \end{anmerkungen}
+    \[y'+2xy=2x\]
+    \underbar{Zunächst}: Homogene Gleichung lösen: $y'+2xy=0$
+    \[\overset{\text{T.d.V.}}{\leadsto}\int_{y_0}^{y}\frac{1}{\tilde y}d\tilde y=\int_{x_0}^{x}2\tilde xd \tilde x\Leftrightarrow\ln(y)=-x^2+c\Leftrightarrow y(x)=Ce^{-x^2}\]
+    \underbar{Danach}: Inhomogene Gleichung mittels Variation der Konstante\\
+    \underbar{Ansatz(inh.)}: $y(x)=C(x)e^{-x^2}\leadsto y'(x)= C'(x)e^{-x^2}-2xC(x)e^{-x^2}$
+    \[\overset{\text{in DGL}}{\Rightarrow}C'(x)e^{-x^2}-2xC(x)e^{-x^2}+2xC(x)e^{-x^2}=2x\Leftrightarrow C'(x)=2xe^{x^2}\Rightarrow C(x)=e^{x^2}+d\]
+    \[\Rightarrow y(x)=1+de^{-x^2},\text{ mit }d\in\mathbb{R}\]
+
+    \subsection*{Aufgabe 12.3: Federpendel}
+    \[y''=\underbrace{2\alpha y'}_{\text{Dämpfungsterm(Viskosität)}}+\underbrace{\omega^2_0y}_{\text{Rückstellkraft}}=0\qquad\alpha,\omega_0>0\]
+    \[\alpha=\frac{1}{2},\omega_0=1\quad y'=u \quad u'=-u-y \overset{\text{Lösbar mittles}}{\underset{Satz 7.3.15}{\leadsto}}\]
+    \begin{anmerkungen}
+        Hier wurden die Koeffizienten durch $\alpha=\frac{1}{2},\omega_0=1$ trivialisiert.\\
+        Man erhält dann ein Gleichungssystem, welches man lösen kann.
+    \end{anmerkungen}
+\end{document}

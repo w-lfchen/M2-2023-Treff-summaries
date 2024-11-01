@@ -1,0 +1,99 @@
+\documentclass[
+    accentcolor=pink,
+    boxarc,
+    dark_mode,
+    logofile=enmpty
+]{rubos-tuda-template}
+
+\usepackage{rubos-common}
+\usepackage{wasysym}
+
+\sheetnumber{4}
+\semester{SoSe 2023}
+\date{11. Mai 2023}
+\termStyle{left-right-manual}
+\termLeft{%
+    printSemester,%
+}
+\termRight{%
+    printDate,%
+}
+\graphicspath{{../pictures/}}
+
+\title[trans rights <3]{Treffpunkt Mathematik II für Informatik \\ Sitzung \getSheetnumber{}}
+
+\begin{document}
+    \maketitle{}
+
+    \begin{anmerkung}
+        \huge{\textcolor{pink}{Keine Garantien über Richtigkeit oder Vollständigkeit. \\ Dies ist ein freiwilliger Mitschrieb.}}
+    \end{anmerkung}
+
+    Grenzwerte von Funktionen:
+    \[\lim_{x \rightarrow x^*} f(x) = f^* \equiv \text{Für jede Folge $(x_n)_{n \in \mathbb{N}}$ mit $x_n \overset{n \rightarrow \infty}{\longrightarrow} x^*$ gilt} \lim_{n \rightarrow \infty} f(x_n) = f^*\]
+    \[ x_n = x^* + \frac{1}{n} \ \ y_n = x^*+\frac{1}{n^2}\]
+    Stetigkeit von Funktionen:
+    \[f \text{ ist stetig im Punkt } x_0 \equiv \lim_{x \rightarrow x_0}f(x) = f(x_0)\]
+    Häufungspunkte einer Menge D:
+    \[x_0 \in D \text{ Häufungspunkt von D } \equiv \exists (x_n) \subset D \text{ mit } x_n \overset{n \rightarrow \infty}{\longrightarrow} x_0 \text{ und } x_n \ne x_0\]
+
+    \subsection*{Aufgabe 4.1}
+    \begin{enumerate}
+        \item[i)]
+            $\lim_{x \rightarrow 0} \sin(\frac{1}{x})$ Überprüfe, ob ein $\alpha \in \mathbb{R}$, sodass $\lim_{x \rightarrow 0} \sin(\frac{1}{x}) = \alpha$\\
+            Müssen uns anschauen $\lim_{n \rightarrow \infty} \sin(\frac{1}{x_n})$ mit $x_n \overset{n \rightarrow \infty}{\longrightarrow} 0$\\
+            Reziproke(??): $\overset{\sim}{x_n} := \frac{\pi}{2} +n2\pi \Rightarrow \sin(\overset{\sim}{x_n}) = 1\ \forall n \in \mathbb{N}$
+            \[\leadsto x_n = (\overset{\sim}{x_n})^{-1} \Rightarrow \sin(\frac{1}{x_n}) = \sin(\frac{1}{(\overset{\sim}{x_n})^{-1}}) = \sin(\overset{\sim}{x_n}) = 1\]
+            \[\leadsto \overset{\sim}{y_n} := \pi + n2\pi\ \ y_n := (\overset{\sim}{y_n})^{-1} \Rightarrow \sin\frac{1}{y_n} = \sin(\frac{1}{(\overset{\sim}{y_n})^{-1}}) = sin(\overset{\sim}{y_n}) = 0\ \text{\lightning}\]
+        \item[ii)]
+            \[\lim_{x \rightarrow 0} x\sin(\frac{1}{x}) \overset{z. z.}{=} 0\]
+            $\leadsto$ Sei $(x_n)_n$ Nullfolge $|x_n\sin(x_n)| \le |x_n|$
+    \end{enumerate}
+    \subsection*{Aufgabe 4.2}
+    \begin{anmerkung}
+        Wurde nicht bearbeitet.
+    \end{anmerkung}
+
+    \subsection*{Aufgabe 4.3}
+    \begin{anmerkung}
+        Wurde nicht bearbeitet.
+    \end{anmerkung}
+
+    \subsection*{Aufgabe 4.4}
+    \begin{enumerate}[label={\alph*)}]
+        \item
+            \[f: \mathbb{R}\backslash\{0\} \rightarrow \mathbb{R}, x \mapsto 2 - \frac{|x|}{x}\]
+            Frage: Gibt es $f^*\mathbb{R}$, sodass $\overset{\sim}{f}(x) =\begin{cases}
+                    f(x), \text{ für } x \ne 0 \\
+                    f^*, \text{ sonst}
+                \end{cases}$ stetig auf ganz $\mathbb{R}$ ist? \\
+            Antwort: Angenommen $f$ stetig fortsetzbar in 0. $f^* \overset{!}{=} \lim_{x \rightarrow 0^-} \overset{\sim}{f}(x) = 3 \ne 1 = \lim_{x \rightarrow 0^+} \overset{!}{=} f^*\ \text{\lightning}$ \\
+            Kommentar von mir: $f(x) = \begin{cases}
+                    3, \text{ falls } x < 0 \\
+                    1, \text{ sonst}
+                \end{cases}$, das wurde angezeichnet
+        \item
+    \end{enumerate}
+
+    \subsection*{Aufgabe 4.5}
+    \[f(x) = \frac{1}{9}x^2 + \frac{1}{5}x + 1, x \in [1, 2]\]
+    Zu zeigen: $f$ besitzt in $f(1,2)$ genau einen FP, i.e. $\exists!\ x^* \in (1,2):f(x^*) = x^*$\\
+    Banachscher Fixpunktsatz $\leadsto$ z.z.:
+    \begin{enumerate}
+        \item[i)]
+            $f$ ist Selbstabbildung, i.e. $f([1,2]) \subseteq [1,2]$
+
+        \item[ii)] $\exists\ q < 1 : |f(x)-f(y)| \le q|x-y|\ \forall\ x,y \in [1,2] = I$
+    \end{enumerate}
+    Beweis:
+    \begin{enumerate}
+        \item[i)]
+            \[f(x) = \frac{1}{9}x^2 + \frac{1}{5}x + 1 \le \frac{4}{9} + \frac{2}{5} + 1 = \frac{20+18}{45} + 1 \le 2\ \forall\ x \in I\]
+            \[f(x) \ge \frac{1}{9} + \frac{1}{5} + 1 \ge 1\]
+
+        \item[ii)]
+            \[|f(x) - f(y)| = |\underbrace{\frac{1}{9}(x^2+y^2)}_{\dagger}+\frac{1}{5}(x-y)| \le (\frac{4}{9} + \frac{1}{5})|x-y|\ \forall\ x,y \in I\]
+            \[\dagger: \frac{1}{9}|(x+y)(x+y)| \le \frac{4}{9} |x+y|\ \forall\ x,y \in I\]
+
+    \end{enumerate}
+\end{document}

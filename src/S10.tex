@@ -1,0 +1,89 @@
+\documentclass[
+    accentcolor=pink,
+    boxarc,
+    dark_mode,
+    logofile=enmpty
+]{rubos-tuda-template}
+
+\usepackage{rubos-common}
+
+\sheetnumber{10}
+\semester{SoSe 2023}
+\date{20. Juni 2023}
+\termStyle{left-right-manual}
+\termLeft{%
+    printSemester,%
+}
+\termRight{%
+    printDate,%
+}
+\graphicspath{{../pictures/}}
+
+\title[trans rights <3]{Treffpunkt Mathematik II für Informatik \\ Sitzung \getSheetnumber{}}
+
+\begin{document}
+    \maketitle{}
+
+    \begin{anmerkung}
+        \huge{\textcolor{pink}{Keine Garantien über Richtigkeit oder Vollständigkeit. \\ Dies ist ein freiwilliger Mitschrieb.}}
+    \end{anmerkung}
+
+    \subsection*{10.1: Integration durch Substitution}
+    Integration durch Substitution: $\displaystyle{\int_{\varphi(b)}^{\varphi(a)}f(x)dx = \int_{a}^{b}f(\varphi(x))\varphi'(x)dx}$
+
+    \subsubsection*{i)}
+    \[\int_{0}^{1}\frac{x}{(1+x^2)^2}dx = \int_{\textcolor{cyan}{u(0)=}1}^{\textcolor{cyan}{u(1)=}2} \frac{\not\!x}{u^2} \frac{du}{2\not\!x} = \frac{1}{2} \int_{1}^{2} \frac{1}{u^2}du=\frac{1}{2}[-u^{-1}]_1^2=\frac{1}{2}(-\frac{1}{2}+1)=\frac{1}{4}\]
+    \[u = 1 + x^2 \leadsto du = 2xdx \quad \frac{x}{(1+x^2)^2} \overset{u(x) = 1 + x^2}{=} \frac{1}{2}\frac{u'(x)}{u(x)} \overset{f(x) = \frac{1}{x^2}}{=} \frac{1}{2}f(u(x))u'(x)\]
+
+    \subsubsection*{ii)}
+    \begin{align*}
+        \int_{0}^{t}\frac{3x^8}{x^3+1}dx & =\int_{1}^{t^3+1}\frac{\not\!3x^6}{u}\frac{du}{\not\!3\not\!x^2}=\int_{1}^{t^3+1}\frac{x^6}{u}du=\int_{1}^{t^3+1}\frac{(u-1)^2}{u}du=\int_{1}^{t^3+1}\frac{u^2-2u+1}{u}du \\
+                                         & =\int_{1}^{t^3+1}u-2+\frac{1}{u}du=[\frac{u^2}{2}-2u+ln(u)]_1^{t^3+1}
+    \end{align*}
+    \[u = x^3+1 \leadsto du=3x^2dx \quad \frac{3x^8}{x^3+1} \overset{u(x)=x^3+1}{=}\frac{u'(x)x^6}{u(x)}=\frac{(u(x)-1)^2}{u(x)}u'(x)\leadsto f(x)=\frac{(x-1)^2}{x}=f(u(x))u'(x)\]
+
+    \subsubsection*{iii)}
+    \[\int_{0}^{2}\frac{\arctan(x)}{1+x^2}dx=\int_{0}^{\arctan(2)}\frac{u(1+x^2)}{1+x^2}du=[\frac{u^2}{2}]_0^{\arctan(2)}=\frac{\arctan^2(2)}{2} \quad u=f\]
+    \[u=\arctan(x) \leadsto du=\frac{1}{1+x^2}dx\]
+
+    \subsection*{10.2: Partielle Integration}
+    Partielle Integration: $\displaystyle{(fg)'=f'g+fg'} \overset{\int}{\leadsto} \int f'g=[fg]-\int fg'$
+    \begin{anmerkungen}
+        Durch partielle Integration will man "nette" Funktionen isolieren.\\
+        Die Stammfunktion von $\ln(x)$ existiert nicht.
+    \end{anmerkungen}
+
+    \subsubsection*{i)}
+    \begin{align*}
+        \int_{0}^{t}\underbrace{(1+2x)}_g\underbrace{e^{-x}}_{f'}dx & =[-(1+2x)e^{-x}]_0^t-\int_{0}^{t}2(-e^{-x})dx                                  \\
+                                                                    & =-(1+2t)e^{-t}+1+2[-e^{-x}]_0^t=-(1+2t)e^{-t}+1+2(-e^{-t}+1)=e^{-t}-2te^{-t}+3
+    \end{align*}
+
+    \subsubsection*{ii)}
+    \begin{anmerkung}
+        Wurde nicht bearbeitet.
+    \end{anmerkung}
+
+    \subsubsection*{iii)}
+    \[\int_{2}^{3}\ln(x)^2dx= \int_{2}^{3}\underbrace{1}_{f'}\cdot\underbrace{\ln(x)^2}_gdx=[x\ln(x)^2]_2^3-\int_{2}^{3}\not\!x2\frac{\ln(x)}{\not\!x}=[x\ln(x)^2]_2^3-[2xln(x)]_2^3+\int_{2}^{3}\frac{2\not\!x}{\not\!x}\]
+
+    \subsection*{10.3: Parameterintegrale}
+    \begin{anmerkungen}
+        Springender Punkt ist Zerlegung des Integrals in Komposition aus Funktionen, auf diese kann man dann die mehrdimensionale Kettenregel anwenden.
+    \end{anmerkungen}
+
+    \subsubsection*{i)}
+    \[I(x)=\int_{-5x^3}^{x}\sin(tx)e^tdt, \quad F(u,v,w)=\int_{-5v^3}^{u}\sin(tw)e^tdt, \quad g(x)=(x,-5x^3,x)\]
+    \[\leadsto I(x)\overset{(*)}{=}F\circ g(x)\]
+    \begin{align*}
+        \leadsto I'(x) & =dI_x\overset{(*)}{=}dF_{g(x)}dg_x=(\partial_uF,\partial_vF,\partial_wF)\big|\underset{(u.v.w)=g(x)}{}\cdot(1,-15x^2,1)^T \\
+                       & =\sin(x^2)e^x+\sin(-5x^4)e^{-5x^3}15x^2+\int_{-5x^3}^{x}t\cos(tx)e^tdt
+    \end{align*}
+    \[\partial_1I(x)=\lim_{h\to0}\frac{I(x+h\cdot1)-I(x)}{h}=I'(x)\]
+    \[\partial_uF(u,v,w)=\sin(uw)e^u\qquad\partial_vF(u,v,w)=-\sin(vw)e^v\qquad\partial_wF(u,v,w)=\int_{v}^{u}t\cos(tw)e^tdt\]
+
+    \subsubsection*{ii)}
+    \begin{anmerkung}
+        Wurde nicht bearbeitet.
+    \end{anmerkung}
+\end{document}

@@ -1,0 +1,85 @@
+\documentclass[
+    accentcolor=pink,
+    boxarc,
+    dark_mode,
+    logofile=enmpty
+]{rubos-tuda-template}
+
+\usepackage{rubos-common}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning}
+
+\sheetnumber{5}
+\semester{SoSe 2023}
+\date{16. Mai 2023}
+\termStyle{left-right-manual}
+\termLeft{%
+    printSemester,%
+}
+\termRight{%
+    printDate,%
+}
+\graphicspath{{../pictures/}}
+
+\title[trans rights <3]{Treffpunkt Mathematik II für Informatik \\ Sitzung \getSheetnumber{}}
+
+\begin{document}
+    \maketitle{}
+    \begin{anmerkung}
+        \huge{\textcolor{pink}{Keine Garantien über Richtigkeit oder Vollständigkeit. \\ Dies ist ein freiwilliger Mitschrieb.}}
+    \end{anmerkung}
+    \subsection*{5.1}
+    \subsubsection*{a)}
+
+    \begin{anmerkung}
+        Potenzreihe heißt Potenzreihe, weil immer höhere Potenzen von $x$ aufsummiert werden.
+    \end{anmerkung}
+    \[\sum_{n = 0}^{\infty} \frac{x^n}{2^n} \underset{\text{kriterium}}{\overset{\text{Wurzel-}}{\leadsto}} \sqrt[n]{\frac{|x|^n}{2^n}} = \frac{|x|}{2} < 1 \Rightarrow \text{Konvergenzradius } r = 2\]
+    \(\displaystyle{\sum_{n = 0}^{\infty} \frac{x^n}{2^n}}\) konvergiert in $(-2, 2)$ absolut und divergiert in $\mathbb{R}\backslash(-2,2)$
+
+    Allgemein: \(\sqrt[n]{|a_n x^n|} \overset{!}{<} 1 \Leftrightarrow |x| \overset{!}{<} \frac{1}{\sqrt[n]{|a_n|}} =\) Konvergenzradius
+
+    \subsubsection*{b)}
+    \[\sum_{n = 0}^{\infty} \frac{n^2 x^n}{2n+1} \underset{\text{kriterium}}{\overset{\text{Wurzel-}}{\leadsto}} \sqrt[n]{\frac{n^2}{2n+1}} = \sqrt[n]{\frac{n}{2+\frac{1}{n}}} = \frac{\sqrt[n]{n}}{\sqrt[n]{2n+1}} \overset{n \to \infty}{\longrightarrow} 1\]
+    $\Rightarrow$ Konvergiert absolut auf $(-1,1)$ und divergiert außerhalb.
+
+    \subsubsection*{c)}
+    \[\sum_{n = 0}^{\infty} \frac{x^n}{(2n+1)!} \underset{\text{kriterium}}{\overset{\text{Wurzel-}}{\leadsto}} \sqrt[n]{\frac{1}{(2^n+1)!}} ?\]
+    \[\underset{\text{kriterium}}{\overset{\text{Quotienten-}}{\leadsto}} \frac{(2^n+1)!}{(2^{n+1}+1)!} \overset{n \to \infty}{\longrightarrow} 0\]
+    \[2^{n+1}+1 -(2^n+1) = 2^{n+1}-2^n = 2^n(2-1) = 2^n\]
+    Konvergiert absolut auf ganz $\mathbb{R}$
+
+    Quotientenkriterium allgemein: \(\displaystyle{\bigl|\frac{a_{n+1}x^{n+1}}{a_nx^n}\bigr| \overset{!}{<} 1 \Leftrightarrow |x| < \bigl|\frac{a_n}{a_{n+1}} \bigr|}\)
+
+    \subsection*{5.2}
+    Nach 1/4-Umdrehung darf 4. Tischbein nicht aufliegen, sonst hat Tisch am Anfang nicht gewackelt. \\
+    \begin{tikzpicture}
+        \node (00) []  {fest};
+        \node (10) [below = of 00] {fest};
+        \node (11) [right = of 10] {\ \ * \ \ };
+        \node (01) [right = of 00] {fest};
+        \draw [white,-] (00) to (01);
+        \draw [white,-] (00) to (10);
+        \draw [white,-] (01) to (11);
+        \draw [white,-] (10) to (11);
+        \draw [white,->, bend right] (11) to (01);
+    \end{tikzpicture}
+    $\underset{\text{umdrehung}}{\overset{\text{Nach Viertel-}}{\leadsto}}$
+    \begin{tikzpicture}
+        \node (00) []  {fest};
+        \node (10) [below = of 00] {fest};
+        \node (11) [right = of 10] {fest};
+        \node (01) [right = of 00] {\ \ * \ \ };
+        \draw [white,-] (00) to (01);
+        \draw [white,-] (00) to (10);
+        \draw [white,-] (01) to (11);
+        \draw [white,-] (10) to (11);
+    \end{tikzpicture}
+
+    Höhefunktion des Tischbeins * muss stetig sein, zumindest auf dem Intervall $[0, \pi/2]$, wenn die Funktionseingabe dem Drehwinkel entspricht. Danach ist Höhe des Tischbeins negativ in Relation zum Boden. Es wurde angenommen, dass alle Tischbeine gleich lang sind, die Unebenheit des Bodens ist Ursache für das Wackeln.
+    \subsection*{5.3}
+    \begin{anmerkung}
+        Wurde nicht bearbeitet.
+    \end{anmerkung}
+\end{document}

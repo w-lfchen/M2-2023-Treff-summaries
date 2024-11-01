@@ -1,0 +1,83 @@
+\documentclass[
+    accentcolor=pink,
+    boxarc,
+    dark_mode,
+    logofile=enmpty
+]{rubos-tuda-template}
+
+\usepackage{rubos-common}
+
+\sheetnumber{7}
+\semester{SoSe 2023}
+\date{30. Mai 2023}
+\termStyle{left-right-manual}
+\termLeft{%
+    printSemester,%
+}
+\termRight{%
+    printDate,%
+}
+\graphicspath{{../pictures/}}
+
+\title[trans rights <3]{Treffpunkt Mathematik II für Informatik \\ Sitzung \getSheetnumber{}}
+
+\begin{document}
+    \maketitle{}
+
+    \begin{anmerkung}
+        \huge{\textcolor{pink}{Keine Garantien über Richtigkeit oder Vollständigkeit. \\ Dies ist ein freiwilliger Mitschrieb.}}
+    \end{anmerkung}
+
+    \subsection*{7.1}
+    \[f: \mathbb{R}^2 \to \mathbb{R}\]
+    \[(x,y) \mapsto \begin{cases}
+            \frac{x^3y+y^2x}{x^2+y^2} & für (x,y) \ne (0,0) \\
+            0                         & \text{sonst}
+        \end{cases}\]
+    \begin{itemize}
+        \item[] Stetigkeit:\\
+            z.z.: \(\forall \text{NF} (x_n,y_n) \ne (0,0)\) gilt \(\lim_{n \to \infty}f(x_n,y_n) = 0\)
+            \[\leadsto |f(x_n,y_n)| = \bigl| \frac{x_n^3y_n+y_n^2x_n}{x_n^2+y_n^2}\bigr| \le \bigl| \frac{x_n^3y_n}{x_n^2+y_n^2} \bigr| + \bigl| \frac{y_n^3x_n}{x_n^2+y_n^2} \bigr| \le \bigl| \frac{x_n^3y_n}{x_n^2} \bigr| + \bigl| \frac{y_n^2x_n}{y_n^2} \bigr| = \bigl| x_ny_n \bigr| + \bigl| x_n \bigr| \overset{n \to \infty}{\longrightarrow} 0\]
+        \item[] Richtungsableitungen:\\
+            Richtungsableitung von $f$ in Punkt $x_0$ in Richtung $v$ : 1
+            \[\leadsto \partial_vf(0) = \lim_{h \to 0} \frac{f(hv)-f(0)}{h} = \lim_{h \to 0} \frac{h^4v_1^3v_2 + h^3v_2^2v_1}{h^3(v_1^2+ v_2^2)} = \lim_{h \to 0} \frac{hv_1^3v_2}{v_1^2+ v_2^2} + \frac{v_2^2v_1}{v_1^2+ v_2^2} =\frac{v_2^2v_1}{v_1^2+ v_2^2}\]
+        \item[] Totale Differenzierbarkeit:\\
+            Angenommen $f$ total differenzierbar. Dann \(\partial_vf(0) = Df(0) \cdot v\) und wir rechnen
+            \[f(x) = f(0) + Df(0) \cdot x + r(x) \Leftrightarrow r(x,x_0) = \frac{x_1^3x_2 + x_2^2x_1}{x_1^2+x_2^2} - \frac{x_2^2x_1}{x_1^2+x_2^2}\]
+            Bestapproximation
+            \[\leadsto \bigl|\frac{r(x_1,x_2)}{\sqrt{x_1^2+x_2^2}}\bigr| = \bigr|\frac{x_1^3x_2+x_2^2x_1-x_2^2x_1}{\sqrt{x_1^2+x_2^2}(x_1^2+x_2^2)}\bigl| \le \bigr|\frac{x_1^3x_2}{x_1x_1^2}\bigl| = |x_2|\]
+            \begin{anmerkungen}
+                Total differenzierbar, wenn es gegen 0 geht, hier ist dies der Fall, da $x_1,x_2$ Nullfolgen sind.\\
+                Die Bestapproximation findet man heraus, indem man durch Norm von Vektor $(x_1,x_2)$ teilt.
+            \end{anmerkungen}
+    \end{itemize}
+    Sandwich-Lemma:
+
+    $(a_n),(b_n),(c_n)$ mit GW $a.b.c$ und $a_n \le b_N \le c_n \Rightarrow a \le b \le c$
+
+    \[\partial_vf(x_0) = \lim_{h \to 0} \frac{f(x_0+hv)-f(x_0)}{h} = \frac{d}{dt} f(x_0+tv)\]
+
+    Bsp zu Richtungsableitungen:
+    \[g(x) = \begin{cases}
+            1, & x \ge 0 \\
+            0, & x < 0
+        \end{cases}\]
+    \[\leadsto \frac{g(h)- g(0)}{h} = \begin{cases}
+            0,            & \text{für } h > 0 \\
+            \frac{-1}{h}, & \text{für } h < 0
+        \end{cases}\]
+    Totale Differenzierbarkeit:
+    \[g: \mathbb{R}^d \to \mathbb{R}^m\]
+    \[\leadsto Dg: \mathbb{R}^d \to L(\mathbb{R}^d, \mathbb{R}^m) \text{ ist lineare Bestapproximation von $g$,}\]
+    \[\text{i.e. } g(x) = g(x_0) + Dg(x_0) \cdot x + r(x,x_0) \text{ mit } \frac{||r(x,x_0)||}{||x-x_0||} \overset{x \to x_0}{\rightarrow} 0\]
+
+    \subsection*{7.2}
+    \begin{anmerkung}
+        Wurde nicht bearbeitet.
+    \end{anmerkung}
+
+    \subsection*{7.3}
+    \begin{anmerkung}
+        Wurde nicht bearbeitet.
+    \end{anmerkung}
+\end{document}

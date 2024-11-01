@@ -1,0 +1,79 @@
+\documentclass[
+    accentcolor=pink,
+    boxarc,
+    dark_mode,
+    logofile=enmpty
+]{rubos-tuda-template}
+
+\usepackage{rubos-common}
+
+\sheetnumber{6}
+\semester{SoSe 2023}
+\date{23. Mai 2023}
+\termStyle{left-right-manual}
+\termLeft{%
+    printSemester,%
+}
+\termRight{%
+    printDate,%
+}
+\graphicspath{{../pictures/}}
+
+\title[trans rights <3]{Treffpunkt Mathematik II für Informatik \\ Sitzung \getSheetnumber{}}
+
+\begin{document}
+    \maketitle{}
+    \begin{anmerkung}
+        \huge{\textcolor{pink}{Keine Garantien über Richtigkeit oder Vollständigkeit. \\ Dies ist ein freiwilliger Mitschrieb.}}
+    \end{anmerkung}
+    \section*{6.1}
+    \subsubsection*{a)}
+    \[\lim_{x \to 1} \frac{\ln(x)}{1-x} = \lim_{x \to 1} \frac{\frac{1}{x}}{-1} = -1\]
+
+    \subsubsection*{b)}
+    \[\lim_{x \to 0} \frac{\cosh(x)-1}{\cos(x)-1} = \lim_{x \to 0} \frac{\sinh(x)}{-\sin(x)} = \lim_{x \to 0} \frac{\cosh(x)}{-\cos(x)} = -1\]
+    \begin{anmerkung}
+        Man darf den Satz von de l'Hospital auch mehrmals anwenden.
+    \end{anmerkung}
+
+    \subsubsection*{c)}
+    \[\lim_{x \to \infty} \frac{\ln(\sqrt{x})}{\sqrt{\ln(x)}} = \lim_{x \to \infty} \frac{\frac{1}{\sqrt{x}} \cdot \frac{1}{2}\frac{1}{\sqrt{x}}}{\frac{1}{2}\frac{1}{\sqrt{\ln(x)}} \cdot \frac{1}{x}} = \lim_{x \to \infty} \sqrt{\ln(x)}= \infty\]
+    \begin{anmerkung}
+        Nicht ganz sicher: Grenzwert muss nach dem Ableiten noch existieren, es darf also nicht oszillieren, bestimmt divergieren ist jedoch gestattet
+    \end{anmerkung}
+
+    \subsubsection*{d)}
+    \[\lim_{x \to \infty} x \ln(1 + \frac{1}{x}) = \lim_{x \to \infty} \frac{\ln(1+\frac{1}{x})}{\frac{1}{x}} = \lim_{x \to \infty} \frac{\frac{-1}{x^2} \cdot \frac{1}{1+\frac{1}{x}}}{\frac{-1}{x^2}} = 1\]
+
+    \section*{6.5}
+    \[f(x) = x^3 + x\]
+    \[\leadsto f'(x) = 3x^2+1 > 0 \text{ auf ganz } \mathbb{R} \Rightarrow f \text{ streng monoton wachsend}\]
+    \[x = f^{-1} \circ f(x) \overset{\frac{d}{dx}}{\leadsto} 1 = f'(x) \cdot (f^{-1})'(f(x)) (*) \Leftrightarrow (f^{-1})'(f(x)) = \frac{1}{f'(x)} \leadsto (f^{-1})'(0) = (f^{-1})'(f(0)) = \frac{1}{f'(0)} = 1\]
+    Taylorpolynom: \(\displaystyle{T_{k,j}(x;a) = \sum_{i = 0}^{k} \frac{f^{(i)}(a)}{i!}(x-a)}\)
+    \[f(0) = 0 \Leftrightarrow 0 = f^{-1} \circ f(0) = f^{-1}(0)\]
+    \[(f^{-1})''(0) ?: \frac{d}{dx} \text{ auf ($*$) angewandt liefert } 0 = f''(x)(f^{-1})'(f(x)) + f'(x)^2 (f^{-1})''(f(x)) \]
+    \[\Leftrightarrow \frac{-f''(x)(f^{-1})'(f(x))}{f'(x)^2} = (f^{-1})''(f(x)) \Rightarrow (f^{-1})''(0) = 0\]
+    \[T_{2,f^{-1}}(x;0) = f^{-1}(0) + (f^{-1})'(0)x + \frac{(f^{-1})''(0)x^2}{2} = x\]
+    \begin{anmerkung}
+        Taylorpolynome sind da, um Funktionen zu approximieren, z.B. Sinus ist bei 0 näherungsweise linear, Restgliedabschätzung dient dann dazu, um Abweichung festzustellen.
+    \end{anmerkung}
+
+    \section*{6.6}
+    \[f:[0,4] \to \mathbb{R}\]
+    \[x \mapsto \begin{cases}
+            -x+3,       & x \in [0,2] \\
+            -x^2+4x -3, & x \in [2,4)
+        \end{cases} \leadsto \lim_{x^+ \to 2} f(x) = -2+3=1 = \lim_{x^- \to 2} f(x) = -4 + 8 -3 =1 \leadsto \text{stetig}\]
+    \[\leadsto \lim_{x \to 2} -1 = -1 \ne \lim_{x \to 2} -2x +4 = 0 \leadsto f \text{ nicht differenzierbar in } x = 2\]
+    \begin{anmerkungen}
+        \begin{enumerate}
+            \item Die Funktion wurde leicht von der Aufgabenstellung abgeändert.
+            \item Differenzierbarkeit bedeutet die Abwesenheit von Knicken, daher heißt es auch glatt
+        \end{enumerate}
+    \end{anmerkungen}
+
+    \section*{6.7}
+    \begin{anmerkung}
+        Wurde nicht bearbeitet.
+    \end{anmerkung}
+\end{document}

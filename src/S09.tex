@@ -1,0 +1,85 @@
+\documentclass[
+    accentcolor=pink,
+    boxarc,
+    dark_mode,
+    logofile=enmpty
+]{rubos-tuda-template}
+
+\usepackage{rubos-common}
+
+\sheetnumber{9}
+\semester{SoSe 2023}
+\date{13. Juni 2023}
+\termStyle{left-right-manual}
+\termLeft{%
+    printSemester,%
+}
+\termRight{%
+    printDate,%
+}
+\graphicspath{{../pictures/}}
+
+\title[trans rights <3]{Treffpunkt Mathematik II für Informatik \\ Sitzung \getSheetnumber{}}
+
+\begin{document}
+    \maketitle{}
+    \begin{anmerkung}
+        \huge{\textcolor{pink}{Keine Garantien über Richtigkeit oder Vollständigkeit. \\ Dies ist ein freiwilliger Mitschrieb.}}
+    \end{anmerkung}
+
+    \subsection*{9.1}
+    \[a < b,\quad f:[a,b] \to \mathbb{R} \text{ stetig}\]
+    \begin{anmerkungen}
+        Aus der Stetigkeit von $f$ folgt, dass $f$ integrierbar ist.\\
+        Aus der Stetigkeit von $f$ folgt, dass $|f|$ stetig ist.
+    \end{anmerkungen}
+
+    \subsubsection*{i)}
+    $|f|$ ist integrierbar und es gilt
+    $\displaystyle{|\int_{a}^{b}f(x)dx| \le \int_{a}^{b}|f(x)|dx}$
+    \begin{proof}
+        Schritt 1: $|f| = f^+ + f^-$ integrierbar, da $|f|$ stetig
+        \[\leadsto -f, f \le |f|\]
+        \[\Rightarrow \int_{a}^{b}f(x)dx \le \int_{a}^{b}|f(x)|dx \text{ und } \int_{a}^{b}f(x)dx \le \int_{a}^{b} |f(x)|dx \text{ wegen Monotonie (und Homogenität)}\]
+    \end{proof}
+    \subsubsection*{Monotonie des Integrals}
+    Seien $f$, $g$ integrierbar mit $f \le g$ auf $[a,b]$.
+    \[\text{Zu zeigen: } \int_{a}^{b}f(x)dx \le \int_{a}^{b}g(x)dx\]
+    \begin{proof}
+        \begin{align*}
+            \leadsto & R(f, Z) = \sum_{i=1}^{|Z|}f(\eta_i)\Delta_i  \\
+                     & R(g, Z) = \sum_{i=1}^{|Z|}g(\eta_ii)\Delta_i
+        \end{align*}
+    \end{proof}
+    \begin{anmerkungen}
+        $R(f, Z)$ ist Riemann-Integral mit Funktion $f$ und Partitionierung $Z$\\
+        Von mir: hierbei die Rechtecke unter der Funktion im Hinterkopf behalten
+    \end{anmerkungen}
+
+    \subsubsection*{ii)}
+    Sei $c \in (a,b)$. Dann ist $f$ auf $[a,c]$ und $[c,b]$ integrierbar und es gilt $\displaystyle{\int_{a}^{b}f(x)dx = \int_{a}^{c}f(x)dx + \int_{c}^{b}f(x)dx}$
+    \begin{proof}
+        Nehme Partitionierung $Z^j = (z_1^j, \dots, z_i^j, \dots ,z_n^j)$(Anmerkung: $z_1^j = a, z_n^j = b$) mit $z_i^j = c$. Dann gilt
+        \[R(f, Z^j) = \sum_{k=1}^{n}f(z_k^j)\Delta_k^j = \sum_{k=1}^{i}f(z_k^j) \Delta_k^j + \sum_{k=i}^{n}f(z_n^j)\Delta_k^j\]
+        \begin{anmerkungen}
+            Das $j$ indiziert die Partitionierung, "bestimmt die Feinheit der Partitionierung"\\
+            Beim Integralausdruck kann man über Riemann-Summen argumentieren, wie es hier getan wurde.
+        \end{anmerkungen}
+        $\leadsto$ nach Grenzübergang folgt wzzw (was zu zeigen war)
+    \end{proof}
+
+    \subsection*{9.2}
+    Wir betrachten das Skalarprodukt auf $C([a,b])$ (Raum der stetigen Funktionen), i.e.
+    \[\langle f,g \rangle := \int_{a}^{b}f(x)g(x)dx \quad \text{für } f,g \in C([a.b])\]
+    und die dadurch induzierte Norm $\displaystyle{||f||_2 = \int_{a}^{b}f(x)^2dx}$.
+
+    Zu zeigen: $||\cdot||_2$ ist nicht äquivalent zur Supremumsnorm $||f||_\infty = \underset{[a,b]}{\sup}|f|$
+    \begin{proof}
+        Äquivalenz der Normen $\sim c||f||_\infty\le ||f||_2\le C||f||_2$
+        \[\leadsto f_n(x) = \begin{cases}
+                \sqrt{n} & \text{für }x \in [0, \frac{1}{n}] \\
+                0        & \text{sonst}
+            \end{cases} \Rightarrow ||f_n||_2^2 = \int_{0}^{\frac{1}{n}}ndx=1 \text{ und } ||f_n||_\infty = \sqrt{n}\]
+        Der Beweis ist als Hausübung zu Ende zu führen.
+    \end{proof}
+\end{document}

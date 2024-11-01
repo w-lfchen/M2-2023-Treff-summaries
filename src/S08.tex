@@ -1,0 +1,118 @@
+\documentclass[
+    accentcolor=pink,
+    boxarc,
+    dark_mode,
+    logofile=enmpty
+]{rubos-tuda-template}
+
+\usepackage{rubos-common}
+
+\sheetnumber{8}
+\semester{SoSe 2023}
+\date{6. Juni 2023}
+\termStyle{left-right-manual}
+\termLeft{%
+    printSemester,%
+}
+\termRight{%
+    printDate,%
+}
+\graphicspath{{../pictures/}}
+
+\title[trans rights <3]{Treffpunkt Mathematik II für Informatik \\ Sitzung \getSheetnumber{}}
+
+\begin{document}
+    \maketitle{}
+    \begin{anmerkung}
+        \huge{\textcolor{pink}{Keine Garantien über Richtigkeit oder Vollständigkeit. \\ Dies ist ein freiwilliger Mitschrieb.}}
+    \end{anmerkung}
+
+    \subsection*{7.2}
+    \begin{anmerkungen}
+        Jacobi-Matrix ist Verallgemeinerung der Gradienten.\\
+        In jeder Zeile steht der Gradient der Komponentenfunktion.\\
+        Jacobi-Matrix ist totale Ableitung.
+    \end{anmerkungen}
+    Jacobi-Matrix von \(f(x,y,z) = (x^2\ln(y^2+1), z\exp(z), xyz)\) bestimmen:
+    \[\leadsto \begin{pmatrix}
+            \frac{\partial f_1}{\partial x} & \frac{\partial f_1}{\partial y} & \frac{\partial f_1}{\partial z} \\
+            \frac{\partial f_2}{\partial x} & \frac{\partial f_2}{\partial y} & \frac{\partial f_2}{\partial z} \\
+            \frac{\partial f_3}{\partial x} & \frac{\partial f_3}{\partial y} & \frac{\partial f_3}{\partial z}
+        \end{pmatrix}\]
+    \[\begin{matrix}
+            \frac{\partial f_1}{\partial x}(x,y,z) = 2x\ln(y^2+1)        & \frac{\partial f_1}{\partial y}(x,y,z) = 0                  & \frac{\partial f_1}{\partial z}(x,y,z) = yz \\
+            \frac{\partial f_2}{\partial x}(x,y,z) = x^2\frac{2y}{y^2+1} & \frac{\partial f_2}{\partial y}(x,y,z) = 0                  & \frac{\partial f_2}{\partial z}(x,y,z) = xz \\
+            \frac{\partial f_3}{\partial x}(x,y,z) = 0                   & \frac{\partial f_3}{\partial y}(x,y,z) = \exp(z) + z\exp(z) & \frac{\partial f_3}{\partial z}(x,y,z) = xy
+        \end{matrix}\]
+    \[J_f(x,y,z)=\begin{pmatrix}
+            2x\ln(y^2+1) & x^2\frac{2y}{y^2+1} & 0                  \\
+            0            & 0                   & \exp(z) + z\exp(z) \\
+            yz           & xz                  & xy
+        \end{pmatrix}\]
+    \clearpage
+
+    \subsection*{7.3}
+    \begin{anmerkungen}
+        Die Terme, die nicht von der Variablen, also $x,y,z$ abhängig sind, fallen weg.\\
+        Gradient gibt Richtung des steilsten Anstiegs "im Gebirge", Länge des Vektors sagt, wie steil.\\
+        Richtungsableitung ist die Steigung in Richtung $v$ mal die Norm von $v$.\\
+        \(displaystyle{\big|\underset{(x,y,z = u)}{}}\) steht für Auswertung des rechten allgemeinen Terms unter $u$.
+    \end{anmerkungen}
+    \[f(x,y,z) = \cos(x^2) + \sin(x^2) + 3, u=\frac{\sqrt\pi}{2},\sqrt\pi,5\]
+    \[\nabla f(u)=(-2x\sin(x^2),2y\cos(y^2),0)\big|\underset{(x,y,z = u)}{}=(-2\sqrt{\frac{\pi}{2}}, -2\sqrt\pi, 0)\]
+    \[v=(0,1,1) \leadsto \partial_vf(u)=\langle\nabla f(u),v\rangle=-1\sqrt\pi\]
+
+    \subsection*{8.1}
+    \begin{anmerkungen}
+        Kritische Punkte sind Ableitungen, in denen der Gradient verschwindet $\Rightarrow$ Steigung ist $0$
+    \end{anmerkungen}
+    Relative Extrema von $f(x,y)=x^2-3xy+xy^3+1$ bestimmen.
+    \begin{itemize}
+        \item[Schritt 1:]$\nabla f$ bestimmen und $\nabla f(x,y)\overset{!}{=}(0,0)$ lösen:
+            \[\nabla f(x,y)=(2x-3y+y^3,-3x+3xy^2)\overset{!}{=}(0,0)\]
+            \[\leadsto\begin{matrix}
+                    2x-3y+y^3=0 \\
+                    -3x+3xy^2=0
+                \end{matrix} \Leftrightarrow %
+                \begin{matrix}
+                    x=\frac{1}{2}(3y-y^3) \\
+                    3x(-1+y^2)=0
+                \end{matrix}\overset{\text{1 in 2}}{\leadsto}(3y-y^3)(y^2-1)=0 \Leftrightarrow y(3-y^2)(y^2-1)=0\]
+
+        \item[Schritt 2:]Hesse-Matrix bestimmen und in den kritischen Punkten auf Definitheit überprüfen:
+            \[\leadsto \begin{matrix}
+                    y_1=1, & y_2=-1, & y_3=\sqrt3, & y_4=\sqrt{-3}, & y_5=0 \\
+                    x_1=1, & x_2=-1, & x_3=0,      & x_4=0,         & x_5=0
+                \end{matrix}\]
+            \[H_f(x,y)=\begin{pmatrix}
+                    f_{xx} & f_{xy} \\
+                    f_{yx} & f_{yy}
+                \end{pmatrix}=%
+                \begin{pmatrix}
+                    2       & -3+3y^2 \\
+                    -3+3y^2 & 6xy
+                \end{pmatrix}\]
+            \[H_f(x_1,y_1)=\begin{pmatrix}
+                    2 & 0 \\
+                    0 & 6
+                \end{pmatrix}\text{ pos.def. $\Rightarrow$ lok. Min. }%
+                H_f(x_2,y_2)=\begin{pmatrix}
+                    2 & 0 \\
+                    0 & 6
+                \end{pmatrix}\text{ pos.def. $\Rightarrow$ lok. Min.}\]
+            \[H_f(x_3,y_3)=\begin{pmatrix}
+                    2 & 6 \\
+                    6 & 0
+                \end{pmatrix}\overset{\text{Hauptminoren}}{\underset{\text{Kriterium, Satz 3.1.22}}{\leadsto}}\det(H_f(x_3,y_3))=0-36<0 \text{ und } 2 > 0 \Rightarrow \text{ indefinit, Sattelpunkt}\]
+            \[H_f(x_4,y_4)\text{ wie zuvor, liefert Sattelpunkt}\]
+            \[H_f(x_5,y_5)=\begin{pmatrix}
+                    2  & -3 \\
+                    -3 & 0
+                \end{pmatrix}\det(H_F(x_5,y_5))=-9<0\Rightarrow\text{ indefinit}\Rightarrow\text{ Sattelpunkt}\]
+    \end{itemize}
+
+    \subsection*{8.2}
+    \begin{anmerkung}
+        Wurde nicht bearbeitet.
+    \end{anmerkung}
+\end{document}
